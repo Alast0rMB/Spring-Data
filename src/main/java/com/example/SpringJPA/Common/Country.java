@@ -1,5 +1,6 @@
 package com.example.SpringJPA.Common;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -10,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "COUNTRIES")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +28,7 @@ public class Country {
     @JoinColumn(name = "REGION_ID")
     private Region region;
 
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "country",fetch = FetchType.LAZY,orphanRemoval = true)
     private Set<Location> locations = new LinkedHashSet<>();
 

@@ -1,5 +1,6 @@
 package com.example.SpringJPA.Common;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "WAREHOUSES")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
