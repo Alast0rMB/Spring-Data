@@ -28,15 +28,7 @@ public class RegionService {
 
     public Region findId(Long id){return regionRepository.findById(id).orElseThrow(() -> new RuntimeException("Resource not found"));}
     public List<Region> findAll(){return regionRepository.findAll();}
-    public List<Region> findAllSort(){return regionRepository.findAll(Sort.by("id"));}
-    @Transactional
-    public Set<CountryDTO> getCountriesDelay(Long id){
-        Region region = findId(id);
-        Set<CountryDTO> countries = new HashSet<>();
-        for (Country country : region.getCountries())
-            countries.add(countryService.convertDTO(country));
-        return countries;
-    }
+    public List<Region> findAllSort(String by){return regionRepository.findAll(Sort.by(by));}
 
     public Set<CountryDTO> getCountries(Long id){
         Region region =  regionRepository.findCountryById(id);
@@ -47,6 +39,15 @@ public class RegionService {
             countries.add(countryService.convertDTO(country));
         return countries;
     }
+    @Transactional //This annotation is used for performing the entire procedure in one transaction
+    public Set<CountryDTO> getCountriesWithGet(Long id){
+        Region region = findId(id);
+        Set<CountryDTO> countries = new HashSet<>();
+        for (Country country : region.getCountries())
+            countries.add(countryService.convertDTO(country));
+        return countries;
+    }
+
 
     public RegionDTO convertDTO(Region region){return modelMapper.map(region,RegionDTO.class);}
 }

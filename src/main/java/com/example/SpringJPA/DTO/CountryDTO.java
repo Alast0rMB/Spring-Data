@@ -3,11 +3,11 @@ package com.example.SpringJPA.DTO;
 import java.io.Serializable;
 import java.util.Objects;
 
+//DTOs are used for sending and receiving data from Client
 public class CountryDTO implements Serializable {
     private  String id;
     private  String countryName;
 
-    public CountryDTO(){}
 
     public void setId(String id) {
         this.id = id;

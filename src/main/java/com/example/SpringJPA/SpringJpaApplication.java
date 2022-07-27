@@ -7,8 +7,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
-@EnableCaching
+@SpringBootApplication //Meta annotation used to show the main function of spring app
+@EnableCaching //Enable second level caching
 public class SpringJpaApplication {
 
 	public static void main(String[] args) {

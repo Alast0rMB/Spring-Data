@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Service
+@Service //Is used to show Service model
 public class CountryService {
     @Autowired
-    ModelMapper modelMapper;
+    ModelMapper modelMapper; //Autowired's are initialized at the beginning of application
 
+    //Converting Entity to DTO
     public CountryDTO convertDTO(Country country){return modelMapper.map(country,CountryDTO.class);}
 
 }
